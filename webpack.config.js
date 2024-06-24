@@ -6,9 +6,9 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-        title: 'Restaurant',
+        title: 'Todo List',
         template: './src/index.html',
-        favicon: './src/hamburger.svg'
+        favicon: ''
     }),
   ],
   output: {
