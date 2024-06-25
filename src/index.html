@@ -10,8 +10,30 @@
         <div class="title">Todo List</div>
     </div>
     <div class="container">
-        <div class="sidebar"></div>
-        <div class="content"></div>
+        <div class="sidebar">
+            <div class="sidebar-title">Projects</div>
+            <div class="sidebar-grid"></div>
+            <button id="addProject">(+ svg)</button>
+            <div class="project-input">
+                <div class="project-input-container">
+                    <button class="close-project-input">x</button>
+                    <label for="projectInput">Enter Project Name</label>
+                    <input type="text" id="projectInput" name="projectInput">
+                    <button id="submitProject">Add Project</button>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <button id="addItem">+</button>
+            <div class="item-input">
+                <div class="item-input-container">
+                    <button class="close-item-input">x</button>
+                    <label for="itemTitle">Title</label>
+                    <input type="text" id="itemTitle" name="itemTitle">
+                    <button id="submitItem">Add</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
