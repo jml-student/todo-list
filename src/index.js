@@ -2,7 +2,8 @@ import './style.css';
 import { 
     displayProjects,
     displayContent,
-} from './dom';
+    applyProjectsBgColor,
+} from './dom.js';
 
 (function() {
     let Projects = {};
@@ -22,7 +23,7 @@ import {
         Projects[projectName] = [];
         currentProject = projectName;
         displayProjects(Projects, currentProject);
-
+        applyProjectsBgColor(Projects, currentProject);
     };
 
     const addProjectButton = document.getElementById('addProject');

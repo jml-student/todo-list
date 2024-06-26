@@ -5,13 +5,26 @@ export function displayProjects(Projects, currentProject) {
         let div = document.createElement('div');
         div.classList.add('project-item');
         div.textContent = key;
+        div.id = key;
         sidebarGrid.appendChild(div);
 
         div.addEventListener('click', () => {
             currentProject = key;
             displayContent(Projects, currentProject);
+            applyProjectsBgColor(Projects, currentProject);
         })
     });
+}
+
+export function applyProjectsBgColor(Projects, currentProject) {
+    Object.keys(Projects).forEach((key) => {
+        let div = document.getElementById(key);
+        if (key === currentProject) {
+            div.style.backgroundColor = 'white';
+        } else {
+            div.style.backgroundColor = 'grey';
+        }
+    })
 }
 
 export function displayContent(Projects, project) {
