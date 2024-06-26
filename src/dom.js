@@ -20,9 +20,13 @@ export function applyProjectsBgColor(Projects, currentProject) {
     Object.keys(Projects).forEach((key) => {
         let div = document.getElementById(key);
         if (key === currentProject) {
-            div.style.backgroundColor = 'white';
+            div.style.backgroundColor = 'rgb(212, 212, 212)';
+            div.style.borderLeft = '4px solid var(--main-black)';
+            div.style.paddingLeft = '16px';
         } else {
-            div.style.backgroundColor = 'grey';
+            div.style.backgroundColor = 'rgb(238, 238, 238)';
+            div.style.borderLeft = 'none';
+            div.style.paddingLeft = '20px';
         }
     })
 }
