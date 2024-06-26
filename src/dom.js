@@ -1,12 +1,35 @@
-export function clearSidebar(sidebarGrid) {
+export function displayProjects(Projects) {
+    const sidebarGrid = document.querySelector('.sidebar-grid');
     sidebarGrid.innerHTML = '';
-}
-
-export function displayProjects(Projects, sidebarGrid) {
     Object.keys(Projects).forEach((key) => {
-        const div = document.createElement('div');
+        let div = document.createElement('div');
         div.classList.add('project-item');
         div.textContent = key;
         sidebarGrid.appendChild(div);
     });
+}
+
+export function displayContent(Projects, project) {
+    const content = document.querySelector('.content');
+    content.innerHTML = '';
+    Projects[project].forEach((item) => {
+        let itemContainer = document.createElement('div');
+        itemContainer.classList.add('item-container');
+        let itemTitle = document.createElement('div');
+        itemTitle.classList.add('item-title');
+        itemTitle.textContent = item.title;
+
+        itemContainer.appendChild(itemTitle);
+        content.appendChild(itemContainer);
+    });
+    const addItemDiv = document.createElement('div');
+    const addItemButton = document.createElement('button');
+    addItemButton.textContent = '+';
+    addItemButton.id = 'addItem';
+    addItemButton.addEventListener('click', () => {
+        const itemInputDiv = document.querySelector('.item-input');
+        itemInputDiv.showModal();
+    });
+    addItemDiv.appendChild(addItemButton);
+    content.appendChild(addItemDiv);
 }

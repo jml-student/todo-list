@@ -1,7 +1,7 @@
 import './style.css';
 import { 
-    clearSidebar,
     displayProjects,
+    displayContent,
 } from './dom';
 
 (function() {
@@ -19,74 +19,69 @@ import {
     };
 
     function addProject(projectName) {
-        const sidebarGrid = document.querySelector('.sidebar-grid');
-        clearSidebar(sidebarGrid);
         Projects[projectName] = [];
-        displayProjects(Projects, sidebarGrid);
+        displayProjects(Projects);
         currentProject = projectName;
-    };
-
-    function displayContent(project) {
-        const content = document.querySelector('.content');
-        content.innerHTML = '';
-        Projects[project].forEach((item) => {
-            let itemContainer = document.createElement('div');
-            itemContainer.classList.add('item-container');
-            let itemTitle = document.createElement('div');
-            itemTitle.classList.add('item-title');
-            itemTitle.textContent = item.title;
-
-            itemContainer.appendChild(itemTitle);
-            content.appendChild(itemContainer);
-        });
-        const addItemDiv = document.createElement('div');
-        const addItemButton = document.createElement('button');
-        addItemButton.textContent = '+';
-        addItemButton.id = 'addItem';
-        addItemButton.addEventListener('click', () => {
-            const itemInputDiv = document.querySelector('.item-input');
-            itemInputDiv.style.display = 'block';
-        });
-        addItemDiv.appendChild(addItemButton);
-        content.appendChild(addItemDiv);
     };
 
     const addProjectButton = document.getElementById('addProject');
     addProjectButton.addEventListener('click', () => {
         const projectInputDiv = document.querySelector('.project-input');
-        
-        projectInputDiv.style.display = 'block';
+        projectInputDiv.showModal();
     });
 
-    const submitProjectButton = document.getElementById('submitProject');
-    submitProjectButton.addEventListener('click', () => {
+    const projectForm = document.getElementById('projectForm');
+    projectForm.addEventListener('submit', (event) => {
+        event.preventDefault();
         const projectInput = document.getElementById('projectInput');
         const projectValue = projectInput.value;
         projectInput.value = '';
         const projectInputDiv = document.querySelector('.project-input');
-        projectInputDiv.style.display = 'none';
+        projectInputDiv.close();
         addProject(projectValue);
+        displayContent(Projects, currentProject);
     });
 
     const closeProjectInput = document.querySelector('.close-project-input');
     closeProjectInput.addEventListener('click', () => {
         const projectInputDiv = document.querySelector('.project-input');
-        projectInputDiv.style.display = 'none';
+        projectInputDiv.close();
     });
+
+    const itemForm = document.getElementById('itemForm');
+    itemForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const itemTitleInput = document.getElementById('itemTitle');
+        const itemTitle = itemTitleInput.value;
+        itemTitleInput.value = '';
+
+        const itemDesInput = document.getElementById('itemDes');
+        const itemDes = itemDesInput.value;
+        itemDesInput.value = '';
+
+        const itemDateInput = document.getElementById('itemDate');
+        const itemDate = itemDateInput.value;
+        itemDateInput.value = '';
+
+        const itemPrioInput = document.getElementById('itemPrio');
+        const itemPrio = itemPrioInput.value;
+        itemPrioInput.value = '';
+
+        let item = createTodoItem(itemTitle, itemDes, itemDate, itemPrio);
+        Projects[currentProject].push(item);
+        displayContent(Projects, currentProject);
+
+        const itemInputDiv = document.querySelector('.item-input');
+        itemInputDiv.close();
+    })
 
     const closeItemInput = document.querySelector('.close-item-input');
     closeItemInput.addEventListener('click', () => {
         const itemInputDiv = document.querySelector('.item-input');
-        itemInputDiv.style.display = 'none';
+        itemInputDiv.close();
     });
 
-    const submitItemButton = document.getElementById('submitItem');
-    submitItemButton.addEventListener('click', () => {
-        //
-    })
-
     addProject('Todo');
-    Projects.Todo.push(createTodoItem('first', 'nothing', 20, 'normal'));
-    console.log({Projects});
-    displayContent('Todo');
+    displayContent(Projects, currentProject);
+
 })();

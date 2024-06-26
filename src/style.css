@@ -59,7 +59,6 @@ body {
 }
 
 .project-input {
-    display: none;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -76,7 +75,6 @@ body {
 }
 
 .item-input {
-    display: none;
     position: fixed;
     left: 50%;
     top: 50%;
