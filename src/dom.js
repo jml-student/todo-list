@@ -1,4 +1,4 @@
-export function displayProjects(Projects) {
+export function displayProjects(Projects, currentProject) {
     const sidebarGrid = document.querySelector('.sidebar-grid');
     sidebarGrid.innerHTML = '';
     Object.keys(Projects).forEach((key) => {
@@ -6,6 +6,11 @@ export function displayProjects(Projects) {
         div.classList.add('project-item');
         div.textContent = key;
         sidebarGrid.appendChild(div);
+
+        div.addEventListener('click', () => {
+            currentProject = key;
+            displayContent(Projects, currentProject);
+        })
     });
 }
 

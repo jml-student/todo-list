@@ -20,8 +20,9 @@ import {
 
     function addProject(projectName) {
         Projects[projectName] = [];
-        displayProjects(Projects);
         currentProject = projectName;
+        displayProjects(Projects, currentProject);
+
     };
 
     const addProjectButton = document.getElementById('addProject');
