@@ -1,4 +1,8 @@
-import './style.css'
+import './style.css';
+import { 
+    clearSidebar,
+    displayProjects,
+} from './dom';
 
 (function() {
     let Projects = {};
@@ -16,14 +20,9 @@ import './style.css'
 
     function addProject(projectName) {
         const sidebarGrid = document.querySelector('.sidebar-grid');
-        sidebarGrid.innerHTML = '';
+        clearSidebar(sidebarGrid);
         Projects[projectName] = [];
-        Object.keys(Projects).forEach((key) => {
-            const div = document.createElement('div');
-            div.classList.add('project-item');
-            div.textContent = key;
-            sidebarGrid.appendChild(div);
-        });
+        displayProjects(Projects, sidebarGrid);
         currentProject = projectName;
     };
 
@@ -42,24 +41,25 @@ import './style.css'
         });
         const addItemDiv = document.createElement('div');
         const addItemButton = document.createElement('button');
+        addItemButton.textContent = '+';
+        addItemButton.id = 'addItem';
         addItemButton.addEventListener('click', () => {
             const itemInputDiv = document.querySelector('.item-input');
             itemInputDiv.style.display = 'block';
         });
-        addItemButton.textContent = '+';
-        addItemButton.id = 'addItem';
         addItemDiv.appendChild(addItemButton);
         content.appendChild(addItemDiv);
     };
 
-    const addButton = document.getElementById('addProject');
-    addButton.addEventListener('click', () => {
-        let projectInputDiv = document.querySelector('.project-input');
+    const addProjectButton = document.getElementById('addProject');
+    addProjectButton.addEventListener('click', () => {
+        const projectInputDiv = document.querySelector('.project-input');
+        
         projectInputDiv.style.display = 'block';
     });
 
-    const submitButton = document.getElementById('submitProject');
-    submitButton.addEventListener('click', () => {
+    const submitProjectButton = document.getElementById('submitProject');
+    submitProjectButton.addEventListener('click', () => {
         const projectInput = document.getElementById('projectInput');
         const projectValue = projectInput.value;
         projectInput.value = '';
@@ -68,11 +68,22 @@ import './style.css'
         addProject(projectValue);
     });
 
-    const closeInput = document.querySelector('.close-project-input');
-    closeInput.addEventListener('click', () => {
+    const closeProjectInput = document.querySelector('.close-project-input');
+    closeProjectInput.addEventListener('click', () => {
         const projectInputDiv = document.querySelector('.project-input');
         projectInputDiv.style.display = 'none';
     });
+
+    const closeItemInput = document.querySelector('.close-item-input');
+    closeItemInput.addEventListener('click', () => {
+        const itemInputDiv = document.querySelector('.item-input');
+        itemInputDiv.style.display = 'none';
+    });
+
+    const submitItemButton = document.getElementById('submitItem');
+    submitItemButton.addEventListener('click', () => {
+        //
+    })
 
     addProject('Todo');
     Projects.Todo.push(createTodoItem('first', 'nothing', 20, 'normal'));

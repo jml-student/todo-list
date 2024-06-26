@@ -14,26 +14,36 @@
             <div class="sidebar-title">Projects</div>
             <div class="sidebar-grid"></div>
             <button id="addProject">(+ svg)</button>
-            <div class="project-input">
+            <dialog class="project-input">
                 <div class="project-input-container">
                     <button class="close-project-input">x</button>
-                    <label for="projectInput">Enter Project Name</label>
-                    <input type="text" id="projectInput" name="projectInput">
-                    <button id="submitProject">Add Project</button>
+                    <form id="projectForm">
+                        <label for="projectInput">Enter Project Name</label>
+                        <input type="text" id="projectInput" name="projectInput">
+                        <button id="submitProject" type="submit">Add Project</button>
+                    </form>
                 </div>
-            </div>
+            </dialog>
         </div>
         <div class="content">
             <button id="addItem">+</button>
-            <div class="item-input">
-                <div class="item-input-container">
-                    <button class="close-item-input">x</button>
+        </div>
+        <dialog class="item-input">
+            <div class="item-input-container">
+                <button class="close-item-input">x</button>
+                <form id="itemForm"></form>
                     <label for="itemTitle">Title</label>
                     <input type="text" id="itemTitle" name="itemTitle">
-                    <button id="submitItem">Add</button>
-                </div>
+                    <label for="itemDes">Description</label>
+                    <input type="text" id="itemDes" name="itemDes">
+                    <label for="itemDate">Date</label>
+                    <input type="date" id="itemDate" name="itemDate">
+                    <label for="itemPrio">Priority</label>
+                    <input type="text" id="itemPrio" name="itemPrio">
+                    <button id="submitItem" type="submit">Add</button>
+                </form>
             </div>
-        </div>
+        </dialog>
     </div>
 </body>
 </html>
