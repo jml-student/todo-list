@@ -45,6 +45,7 @@ export function displayContent(Projects, project) {
         content.appendChild(itemContainer);
     });
     const addItemDiv = document.createElement('div');
+    addItemDiv.classList.add('button-container');
     const addItemButton = document.createElement('button');
     addItemButton.textContent = '+';
     addItemButton.id = 'addItem';
