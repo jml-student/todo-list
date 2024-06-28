@@ -15,7 +15,7 @@ import {
             description: description,
             dueDate: dueDate,
             priority: priority,
-            checked: false
+            completed: false
         }
     };
 

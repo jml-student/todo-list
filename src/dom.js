@@ -54,12 +54,45 @@ export function displayContent(Projects, project) {
         itemPrio.classList.add('item-prio');
         itemPrio.textContent = item.priority;
 
+        let itemStatusDiv = document.createElement('div');
+        let itemStatusFirst = document.createElement('div');
+        let itemStatusSecond = document.createElement('div');
+
+        let itemButtonsDiv = document.createElement('div');
+        itemButtonsDiv.classList.add('item-buttons-div');
+
+        let itemEditButton = document.createElement('button');
+        itemEditButton.classList.add('item-edit-button');
+
+        let itemDeleteButton = document.createElement('button');
+        itemDeleteButton.classList.add('item-delete-button');
+
+        let itemArrowDiv = document.createElement('div');
+        itemArrowDiv.classList.add('item-arrow-div');
+
+        let itemArrowButton = document.createElement('button');
+        itemArrowButton.classList.add('item-arrow-button');
+
+        itemStatusDiv.appendChild(itemStatusFirst);
+        itemStatusDiv.appendChild(itemStatusSecond);
+
+        itemButtonsDiv.appendChild(itemEditButton);
+        itemButtonsDiv.appendChild(itemDeleteButton);
+
+        itemArrowDiv.appendChild(itemArrowButton);
+
         itemContainer.appendChild(itemTitle);
         itemContainer.appendChild(itemDes);
         itemContainer.appendChild(itemDate);
         itemContainer.appendChild(itemPrio);
+
+        itemContainer.appendChild(itemStatusDiv);
+        itemContainer.appendChild(itemButtonsDiv);
+        itemContainer.appendChild(itemArrowDiv);
+
         content.appendChild(itemContainer);
     });
+    
     const addItemDiv = document.createElement('div');
     addItemDiv.classList.add('button-container');
     const addItemButton = document.createElement('button');
