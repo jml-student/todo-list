@@ -1,4 +1,4 @@
-export function displayProjects(Projects, currentProject) {
+export function displayProjects(Projects, setCurrentProject) {
     const sidebarGrid = document.querySelector('.sidebar-grid');
     sidebarGrid.innerHTML = '';
     Object.keys(Projects).forEach((key) => {
@@ -9,9 +9,9 @@ export function displayProjects(Projects, currentProject) {
         sidebarGrid.appendChild(div);
 
         div.addEventListener('click', () => {
-            currentProject = key;
-            displayContent(Projects, currentProject);
-            applyProjectsBgColor(Projects, currentProject);
+            setCurrentProject(key);
+            displayContent(Projects, key);
+            applyProjectsBgColor(Projects, key);
         })
     });
 }
@@ -37,17 +37,33 @@ export function displayContent(Projects, project) {
     Projects[project].forEach((item) => {
         let itemContainer = document.createElement('div');
         itemContainer.classList.add('item-container');
+
         let itemTitle = document.createElement('div');
         itemTitle.classList.add('item-title');
         itemTitle.textContent = item.title;
 
+        let itemDes = document.createElement('div');
+        itemDes.classList.add('item-des');
+        itemDes.textContent = item.description;
+
+        let itemDate = document.createElement('div');
+        itemDate.classList.add('item-date');
+        itemDate.textContent = item.dueDate;
+
+        let itemPrio = document.createElement('div');
+        itemPrio.classList.add('item-prio');
+        itemPrio.textContent = item.priority;
+
         itemContainer.appendChild(itemTitle);
+        itemContainer.appendChild(itemDes);
+        itemContainer.appendChild(itemDate);
+        itemContainer.appendChild(itemPrio);
         content.appendChild(itemContainer);
     });
     const addItemDiv = document.createElement('div');
     addItemDiv.classList.add('button-container');
     const addItemButton = document.createElement('button');
-    addItemButton.textContent = '+';
+    addItemButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" /></svg>';
     addItemButton.id = 'addItem';
     addItemButton.addEventListener('click', () => {
         const itemInputDiv = document.querySelector('.item-input');

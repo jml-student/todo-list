@@ -91,9 +91,7 @@ body {
 
 .project-input, .item-input {
     position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: -50px;
     padding: 20px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -160,7 +158,7 @@ body {
     font-family: "Ubuntu", sans-serif;
 }
 
-#submitProject:hover, #submitItem:hover {
+#submitProject:hover, #submitItem:hover, #addItem:hover {
     background-color: rgb(90, 185, 209);
 }
 
@@ -174,8 +172,16 @@ body {
     gap: 20px;
 }
 
+@media (min-width: 1400px) {
+    .content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    }
+}
+
 .item-container {
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 2px rgb(190, 190, 190);
@@ -188,12 +194,13 @@ body {
 }
 
 #addItem {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     font-size: 2rem;
     border: none;
-    box-shadow: 0px 0px 5px 2px rgb(190, 190, 190);
-    color: var(--main-black);
+    box-shadow: 0px 0px 5px 2px rgb(209, 209, 209);
+    color: white;
     padding: 10px;
     border-radius: 35px;
+    background-color: var(--main-blue);
 }

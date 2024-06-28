@@ -19,10 +19,14 @@ import {
         }
     };
 
+    function setCurrentProject(project) {
+        currentProject = project;
+    }
+
     function addProject(projectName) {
         Projects[projectName] = [];
-        currentProject = projectName;
-        displayProjects(Projects, currentProject);
+        setCurrentProject(projectName);
+        displayProjects(Projects, setCurrentProject);
         applyProjectsBgColor(Projects, currentProject);
     };
 
