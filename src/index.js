@@ -69,9 +69,7 @@ import {
         const itemDate = itemDateInput.value;
         itemDateInput.value = '';
 
-        const itemPrioInput = document.getElementById('itemPrio');
-        const itemPrio = itemPrioInput.value;
-        itemPrioInput.value = '';
+        const itemPrio = document.querySelector('input[name="itemPrio"]:checked').value;
 
         let item = createTodoItem(itemTitle, itemDes, itemDate, itemPrio);
         Projects[currentProject].push(item);
@@ -79,7 +77,7 @@ import {
 
         const itemInputDiv = document.querySelector('.item-input');
         itemInputDiv.close();
-    })
+    });
 
     const closeItemInput = document.querySelector('.close-item-input');
     closeItemInput.addEventListener('click', () => {
@@ -88,6 +86,9 @@ import {
     });
 
     addProject('Todo');
+    Projects.Todo.push(createTodoItem('todo title', 'description', '2024-07-10', 'Low'));
+    Projects.Todo.push(createTodoItem('todo title', 'description', '2024-07-10', 'Mid'));
+    Projects.Todo.push(createTodoItem('todo title', 'description', '2024-07-10', 'High'));
     displayContent(Projects, currentProject);
 
 })();

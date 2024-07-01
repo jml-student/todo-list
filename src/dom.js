@@ -52,17 +52,43 @@ export function displayContent(Projects, project) {
 
         let itemPrio = document.createElement('div');
         itemPrio.classList.add('item-prio');
-        itemPrio.textContent = item.priority;
+        let itemPrioContainer = document.createElement('div');
+        itemPrioContainer.classList.add('item-prio-container');
+        const priorityText = document.createElement('p');
+        priorityText.textContent = 'Priority: ';
+        let itemPrioValue = document.createElement('div');
+        itemPrioValue.classList.add('item-prio-value');
+        itemPrioValue.textContent = item.priority;
 
-        let itemStatusDiv = document.createElement('div');
-        itemStatusDiv.classList.add('item-status-div');
+        if (item.priority === 'Low') {
+            itemPrioValue.style.backgroundColor = 'rgb(165, 255, 165)';
+        } else if (item.priority === 'Mid') {
+            itemPrioValue.style.backgroundColor = 'rgb(253, 255, 165)';
+        } else if (item.priority === 'High') {
+            itemPrioValue.style.backgroundColor = 'rgb(255, 165, 165)';
+        }
+
+        let itemButtonsDiv = document.createElement('div');
+        itemButtonsDiv.classList.add('item-buttons-div');
+
+        let itemButtonsContainer = document.createElement('div');
+        itemButtonsContainer.classList.add('item-buttons-container');
+
+        let itemStatus = document.createElement('div');
+        itemStatus.classList.add('item-status');
+        let itemStatusContainer = document.createElement('div');
+        itemStatusContainer.classList.add('item-status-container');
+        let itemStatusText = document.createElement('p');
+        itemStatusText.textContent = 'Completed: ';
+        let itemStatusBox = document.createElement('div');
+        itemStatusBox.classList.add('item-status-box');
         let itemStatusFirst = document.createElement('div');
         itemStatusFirst.classList.add('item-status-first');
         let itemStatusSecond = document.createElement('div');
         itemStatusSecond.classList.add('item-status-second');
 
-        let itemButtonsDiv = document.createElement('div');
-        itemButtonsDiv.classList.add('item-buttons-div');
+        let itemButtonsBox = document.createElement('div');
+        itemButtonsBox.classList.add('item-buttons-box');
 
         let itemEditButton = document.createElement('button');
         itemEditButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" /></svg>';
@@ -78,41 +104,74 @@ export function displayContent(Projects, project) {
         
         let arrowButtonStatus = 'close';
 
+        itemStatusBox.addEventListener('click', () => {
+            if (item.completed === false) {
+                itemStatusBox.style.backgroundColor = 'var(--main-blue)';
+                itemStatusFirst.style.backgroundColor = 'var(--main-blue)';
+                itemStatusFirst.style.boxShadow = 'none';
+                itemStatusSecond.style.backgroundColor = 'rgb(245, 245, 245)';
+                itemStatusSecond.style.boxShadow = '0px 0px 5px 1px rgb(190, 190, 190)';
+                
+                item.completed = true;
+            } else if (item.completed === true) {
+                itemStatusBox.style.backgroundColor = 'rgb(196, 196, 196)';
+                itemStatusFirst.style.backgroundColor = 'rgb(245, 245, 245)';
+                itemStatusFirst.style.boxShadow = '0px 0px 5px 1px rgb(190, 190, 190)';
+                itemStatusSecond.style.backgroundColor ='rgb(196, 196, 196)';
+                itemStatusSecond.style.boxShadow = 'none';
+
+                item.completed = false;
+            }
+        })
+
         itemArrowButton.addEventListener('click', () => {
             if (arrowButtonStatus === 'close') {
-                itemDes.style.display = 'block';
                 itemPrio.style.display = 'block';
-                itemStatusDiv.style.display = 'block';
+                itemStatus.style.display = 'block';
                 itemButtonsDiv.style.display = 'block';
 
+                itemContainer.style.height = '180px';
+
                 itemArrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>';
+                itemArrowButton.style.top = '0%';
 
                 arrowButtonStatus = 'open';
 
             } else if (arrowButtonStatus === 'open') {
-                itemDes.style.display = 'none';
                 itemPrio.style.display = 'none';
-                itemStatusDiv.style.display = 'none';
+                itemStatus.style.display = 'none';
                 itemButtonsDiv.style.display = 'none';
 
+                itemContainer.style.height = '100px';
+
                 itemArrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>';
+                itemArrowButton.style.top = '10%';
 
                 arrowButtonStatus = 'close';
             }
-        })
+        });
 
-        itemStatusDiv.appendChild(itemStatusFirst);
-        itemStatusDiv.appendChild(itemStatusSecond);
+        itemPrioContainer.appendChild(priorityText);
+        itemPrioContainer.appendChild(itemPrioValue);
+        itemPrio.appendChild(itemPrioContainer);
 
-        itemButtonsDiv.appendChild(itemEditButton);
-        itemButtonsDiv.appendChild(itemDeleteButton);
+        itemStatusBox.appendChild(itemStatusFirst);
+        itemStatusBox.appendChild(itemStatusSecond);
+        itemStatusContainer.appendChild(itemStatusText);
+        itemStatusContainer.appendChild(itemStatusBox);
+        itemStatus.appendChild(itemStatusContainer);
+
+        itemButtonsBox.appendChild(itemEditButton);
+        itemButtonsBox.appendChild(itemDeleteButton);
+        itemButtonsContainer.appendChild(itemStatus);
+        itemButtonsContainer.appendChild(itemButtonsBox);
+        itemButtonsDiv.appendChild(itemButtonsContainer);
 
         itemContainer.appendChild(itemTitle);
         itemContainer.appendChild(itemDate);
         itemContainer.appendChild(itemDes);
         itemContainer.appendChild(itemPrio);
 
-        itemContainer.appendChild(itemStatusDiv);
         itemContainer.appendChild(itemButtonsDiv);
 
         itemContainer.appendChild(itemArrowButton);
