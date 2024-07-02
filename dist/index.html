@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-<script defer src="main.js"></script></head>
+<link rel="icon" href="list-box-outline.svg"><script defer src="main.js"></script></head>
 <body>
     <div class="header">
         <div class="title">Todo List</div>
@@ -33,13 +33,23 @@
                 <button class="close-item-input">x</button>
                 <form id="itemForm">
                     <label for="itemTitle">Title</label>
-                    <input type="text" id="itemTitle" name="itemTitle">
+                    <input type="text" id="itemTitle" name="itemTitle" maxlength="20" required>
                     <label for="itemDes">Description</label>
-                    <input type="text" id="itemDes" name="itemDes">
+                    <input type="text" id="itemDes" name="itemDes" maxlength="40" required>
                     <label for="itemDate">Date</label>
-                    <input type="date" id="itemDate" name="itemDate">
-                    <label for="itemPrio">Priority</label>
-                    <input type="text" id="itemPrio" name="itemPrio">
+                    <input type="date" id="itemDate" name="itemDate" required>
+                    <label>Priority</label>
+                    <div class="priority-options">
+                        <label>
+                            <input type="radio" name="itemPrio" value="Low" required> Low
+                        </label>
+                        <label>
+                            <input type="radio" name="itemPrio" value="Mid" required> Mid
+                        </label>
+                        <label>
+                            <input type="radio" name="itemPrio" value="High" required> High
+                        </label>
+                    </div>
                     <button id="submitItem" type="submit">Submit</button>
                 </form>
             </div>
