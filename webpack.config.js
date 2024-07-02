@@ -14,7 +14,7 @@ module.exports = {
     new HtmlWebpackPlugin({
         title: 'Todo List',
         template: './src/index.html',
-        favicon: ''
+        favicon: './svg/list-box-outline.svg'
     }),
   ],
   output: {
