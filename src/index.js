@@ -111,6 +111,7 @@ export function updateStorage(Projects) {
     const closeItemInput = document.querySelector('.close-item-input');
     closeItemInput.addEventListener('click', () => {
         const itemInputDiv = document.querySelector('.item-input');
+        
         const itemTitleInput = document.getElementById('itemTitle');
         const itemTitle = itemTitleInput.value;        
         itemTitleInput.value = '';
