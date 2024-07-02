@@ -134,5 +134,4 @@ export function updateStorage(Projects) {
     Projects.Todo.push(createTodoItem('Plan Weekend Trip', 'Research and book activities', '2024-07-06', 'Mid'));
     Projects.Todo.push(createTodoItem('Pay Bills', 'Pay the utility and credit card bills', '2024-07-10', 'High'));
     displayContent(Projects, currentProject);
-
 })();
