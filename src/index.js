@@ -3,6 +3,7 @@ import {
     displayProjects,
     displayContent,
     applyProjectsBgColor,
+    state,
 } from './dom.js';
 
 (function() {
@@ -70,10 +71,21 @@ import {
         itemDateInput.value = '';
 
         const itemPrio = document.querySelector('input[name="itemPrio"]:checked').value;
+        const itemPrioInputs = document.querySelectorAll('input[name="itemPrio"]');
+        itemPrioInputs.forEach(input => {
+            input.checked = false;
+        });
 
         let item = createTodoItem(itemTitle, itemDes, itemDate, itemPrio);
-        Projects[currentProject].push(item);
-        displayContent(Projects, currentProject);
+        
+        if (state.itemFormMode === 'add') {
+            Projects[currentProject].push(item);
+            displayContent(Projects, currentProject);
+        } else if (state.itemFormMode === 'edit') {
+            Projects[currentProject][state.itemEditIndex] = item;
+            displayContent(Projects, currentProject);
+            state.itemFormMode = 'add';
+        }
 
         const itemInputDiv = document.querySelector('.item-input');
         itemInputDiv.close();
@@ -82,13 +94,28 @@ import {
     const closeItemInput = document.querySelector('.close-item-input');
     closeItemInput.addEventListener('click', () => {
         const itemInputDiv = document.querySelector('.item-input');
+        const itemTitleInput = document.getElementById('itemTitle');
+        const itemTitle = itemTitleInput.value;        
+        itemTitleInput.value = '';
+
+        const itemDesInput = document.getElementById('itemDes');
+        itemDesInput.value = '';
+
+        const itemDateInput = document.getElementById('itemDate');
+        itemDateInput.value = '';
+
+        const itemPrioInputs = document.querySelectorAll('input[name="itemPrio"]');
+        itemPrioInputs.forEach(input => {
+            input.checked = false;
+        });
+
         itemInputDiv.close();
     });
 
     addProject('Todo');
-    Projects.Todo.push(createTodoItem('todo title', 'description', '2024-07-10', 'Low'));
-    Projects.Todo.push(createTodoItem('todo title', 'description', '2024-07-10', 'Mid'));
-    Projects.Todo.push(createTodoItem('todo title', 'description', '2024-07-10', 'High'));
+    Projects.Todo.push(createTodoItem('Read Book', 'Read three chapters', '2024-07-02', 'Low'));
+    Projects.Todo.push(createTodoItem('Plan Weekend Trip', 'Research and book activities', '2024-07-06', 'Mid'));
+    Projects.Todo.push(createTodoItem('Pay Bills', 'Pay the utility and credit card bills', '2024-07-10', 'High'));
     displayContent(Projects, currentProject);
 
 })();

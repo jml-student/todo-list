@@ -31,10 +31,15 @@ export function applyProjectsBgColor(Projects, currentProject) {
     })
 }
 
+export const state = {
+    itemFormMode: 'add',
+    itemEditIndex: null,
+};
+
 export function displayContent(Projects, project) {
     const content = document.querySelector('.content');
     content.innerHTML = '';
-    Projects[project].forEach((item) => {
+    Projects[project].forEach((item, index) => {
         let itemContainer = document.createElement('div');
         itemContainer.classList.add('item-container');
 
@@ -122,7 +127,31 @@ export function displayContent(Projects, project) {
 
                 item.completed = false;
             }
-        })
+        });
+
+        itemEditButton.addEventListener('click', () => {
+            state.itemFormMode = 'edit';
+            state.itemEditIndex = index;
+            const itemInputDiv = document.querySelector('.item-input');
+            const itemTitleInput = document.getElementById('itemTitle');
+            itemTitleInput.value = item.title;
+            const itemDesInput = document.getElementById('itemDes');
+            itemDesInput.value = item.description;
+            const itemDateInput = document.getElementById('itemDate');
+            itemDateInput.value = item.dueDate;
+            const itemPrioInputs = document.querySelectorAll('input[name="itemPrio"]');
+            itemPrioInputs.forEach(input => {
+                if (input.value === item.priority) {
+                    input.checked = true;
+                }
+            });
+            itemInputDiv.showModal();
+        });
+
+        itemDeleteButton.addEventListener('click', () => {
+            Projects[project].splice(index, 1);
+            displayContent(Projects, project);
+        });
 
         itemArrowButton.addEventListener('click', () => {
             if (arrowButtonStatus === 'close') {
