@@ -10,7 +10,7 @@ export function updateStorage(Projects) {
     localStorage.setItem('projects', JSON.stringify(Projects));
     console.log(JSON.parse(localStorage.getItem('projects')));
 }
-
+//main
 (function() {
     let Projects = loadStorage();
     let currentProject = '';
