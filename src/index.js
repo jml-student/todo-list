@@ -6,14 +6,32 @@ import {
     formState,
 } from './dom.js';
 
-export function updateStorage(Projects) {
+export function updateStorage(Projects, currentProject) {
     localStorage.setItem('projects', JSON.stringify(Projects));
-    console.log(JSON.parse(localStorage.getItem('projects')));
+    localStorage.setItem('currentProject', currentProject);
 }
-//main
+
+function loadStorage() {
+    const projects = localStorage.getItem('projects');
+    if (projects) {
+        return JSON.parse(projects);
+    } else {
+        return {};
+    }
+}
+
+function loadCurrentProject() {
+    const currentProject = localStorage.getItem('currentProject');
+    if (currentProject) {
+        return currentProject;
+    } else {
+        return '';
+    }
+}
+
 (function() {
     let Projects = loadStorage();
-    let currentProject = '';
+    let currentProject = loadCurrentProject();
 
     function createTodoItem(title, description, dueDate, priority) {
         return {
@@ -25,15 +43,6 @@ export function updateStorage(Projects) {
         }
     };
 
-    function loadStorage() {
-        const projects = localStorage.getItem('projects');
-        if (projects) {
-            return JSON.parse(projects);
-        } else {
-            return {};
-        }
-    }
-
     function setCurrentProject(project) {
         currentProject = project;
     }
@@ -43,7 +52,7 @@ export function updateStorage(Projects) {
         setCurrentProject(projectName);
         displayProjects(Projects, setCurrentProject);
         applyProjectsBgColor(Projects, currentProject);
-        updateStorage(Projects);
+        updateStorage(Projects, currentProject);
     };
 
     const addProjectButton = document.getElementById('addProject');
@@ -105,7 +114,7 @@ export function updateStorage(Projects) {
         const itemInputDiv = document.querySelector('.item-input');
         itemInputDiv.close();
 
-        updateStorage(Projects);
+        updateStorage(Projects, currentProject);
     });
 
     const closeItemInput = document.querySelector('.close-item-input');
@@ -128,10 +137,17 @@ export function updateStorage(Projects) {
         });
         itemInputDiv.close();
     });
-
-    addProject('Todo');
-    Projects.Todo.push(createTodoItem('Read Book', 'Read three chapters', '2024-07-02', 'Low'));
-    Projects.Todo.push(createTodoItem('Plan Weekend Trip', 'Research and book activities', '2024-07-06', 'Mid'));
-    Projects.Todo.push(createTodoItem('Pay Bills', 'Pay the utility and credit card bills', '2024-07-10', 'High'));
+    
+    displayProjects(Projects, setCurrentProject);
     displayContent(Projects, currentProject);
+    applyProjectsBgColor(Projects, currentProject);
+
+    if (!Projects['Todo']) {
+        addProject('Todo');
+        Projects.Todo.push(createTodoItem('Read Book', 'Read three chapters', '2024-07-02', 'Low'));
+        Projects.Todo.push(createTodoItem('Plan Weekend Trip', 'Research and book activities', '2024-07-06', 'Mid'));
+        Projects.Todo.push(createTodoItem('Pay Bills', 'Pay the utility and credit card bills', '2024-07-10', 'High'));
+        displayContent(Projects, currentProject);
+        updateStorage(Projects, currentProject);
+    }
 })();

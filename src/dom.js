@@ -14,6 +14,7 @@ export function displayProjects(Projects, setCurrentProject) {
             setCurrentProject(key);
             displayContent(Projects, key);
             applyProjectsBgColor(Projects, key);
+            updateStorage(Projects, key);
         })
     });
 }
@@ -152,7 +153,7 @@ export function displayContent(Projects, project) {
 
         itemDeleteButton.addEventListener('click', () => {
             Projects[project].splice(index, 1);
-            updateStorage(Projects);
+            updateStorage(Projects, project);
             displayContent(Projects, project);
         });
 
