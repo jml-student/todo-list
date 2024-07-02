@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <div class="header">
+        <div class="title">Todo List</div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-title">Projects</div>
+            <div class="sidebar-grid"></div>
+            <button id="addProject">Add Project</button>
+            <dialog class="project-input">
+                <div class="project-input-container">
+                    <button class="close-project-input">x</button>
+                    <form id="projectForm">
+                        <label for="projectInput">Enter Project Name</label>
+                        <input type="text" id="projectInput" name="projectInput" required>
+                        <button id="submitProject" type="submit">Submit</button>
+                    </form>
+                </div>
+            </dialog>
+        </div>
+        <div class="content">
+            <div class="button-container"></div>
+        </div>
+        <dialog class="item-input">
+            <div class="item-input-container">
+                <button class="close-item-input">x</button>
+                <form id="itemForm">
+                    <label for="itemTitle">Title</label>
+                    <input type="text" id="itemTitle" name="itemTitle">
+                    <label for="itemDes">Description</label>
+                    <input type="text" id="itemDes" name="itemDes">
+                    <label for="itemDate">Date</label>
+                    <input type="date" id="itemDate" name="itemDate">
+                    <label for="itemPrio">Priority</label>
+                    <input type="text" id="itemPrio" name="itemPrio">
+                    <button id="submitItem" type="submit">Submit</button>
+                </form>
+            </div>
+        </dialog>
+    </div>
+</body>
+</html>
