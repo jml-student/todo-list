@@ -1,3 +1,5 @@
+import {updateStorage} from './index.js';
+
 export function displayProjects(Projects, setCurrentProject) {
     const sidebarGrid = document.querySelector('.sidebar-grid');
     sidebarGrid.innerHTML = '';
@@ -31,7 +33,7 @@ export function applyProjectsBgColor(Projects, currentProject) {
     })
 }
 
-export const state = {
+export const formState = {
     itemFormMode: 'add',
     itemEditIndex: null,
 };
@@ -130,8 +132,8 @@ export function displayContent(Projects, project) {
         });
 
         itemEditButton.addEventListener('click', () => {
-            state.itemFormMode = 'edit';
-            state.itemEditIndex = index;
+            formState.itemFormMode = 'edit';
+            formState.itemEditIndex = index;
             const itemInputDiv = document.querySelector('.item-input');
             const itemTitleInput = document.getElementById('itemTitle');
             itemTitleInput.value = item.title;
@@ -150,6 +152,7 @@ export function displayContent(Projects, project) {
 
         itemDeleteButton.addEventListener('click', () => {
             Projects[project].splice(index, 1);
+            updateStorage(Projects);
             displayContent(Projects, project);
         });
 

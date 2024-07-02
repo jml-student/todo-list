@@ -3,11 +3,16 @@ import {
     displayProjects,
     displayContent,
     applyProjectsBgColor,
-    state,
+    formState,
 } from './dom.js';
 
+export function updateStorage(Projects) {
+    localStorage.setItem('projects', JSON.stringify(Projects));
+    console.log(JSON.parse(localStorage.getItem('projects')));
+}
+
 (function() {
-    let Projects = {};
+    let Projects = loadStorage();
     let currentProject = '';
 
     function createTodoItem(title, description, dueDate, priority) {
@@ -20,6 +25,15 @@ import {
         }
     };
 
+    function loadStorage() {
+        const projects = localStorage.getItem('projects');
+        if (projects) {
+            return JSON.parse(projects);
+        } else {
+            return {};
+        }
+    }
+
     function setCurrentProject(project) {
         currentProject = project;
     }
@@ -29,6 +43,7 @@ import {
         setCurrentProject(projectName);
         displayProjects(Projects, setCurrentProject);
         applyProjectsBgColor(Projects, currentProject);
+        updateStorage(Projects);
     };
 
     const addProjectButton = document.getElementById('addProject');
@@ -78,17 +93,19 @@ import {
 
         let item = createTodoItem(itemTitle, itemDes, itemDate, itemPrio);
         
-        if (state.itemFormMode === 'add') {
+        if (formState.itemFormMode === 'add') {
             Projects[currentProject].push(item);
             displayContent(Projects, currentProject);
-        } else if (state.itemFormMode === 'edit') {
-            Projects[currentProject][state.itemEditIndex] = item;
+        } else if (formState.itemFormMode === 'edit') {
+            Projects[currentProject][formState.itemEditIndex] = item;
             displayContent(Projects, currentProject);
-            state.itemFormMode = 'add';
+            formState.itemFormMode = 'add';
         }
 
         const itemInputDiv = document.querySelector('.item-input');
         itemInputDiv.close();
+
+        updateStorage(Projects);
     });
 
     const closeItemInput = document.querySelector('.close-item-input');
