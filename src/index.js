@@ -125,7 +125,6 @@ export function updateStorage(Projects) {
         itemPrioInputs.forEach(input => {
             input.checked = false;
         });
-
         itemInputDiv.close();
     });
 
