@@ -34,6 +34,23 @@ export function applyProjectsBgColor(Projects, currentProject) {
     })
 }
 
+export function displayDeleteProjects(Projects) {
+    const projectsList = document.querySelector('.projects-list');
+    projectsList.innerHTML = '';
+    Object.keys(Projects).forEach((key) => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        input.setAttribute('name', 'deleteProjectItem');
+        input.setAttribute('value', `${key}`);
+        const span = document.createElement('span');
+        span.textContent = ' ' + key;
+        label.appendChild(input);
+        label.appendChild(span);
+        projectsList.appendChild(label);
+    })
+}
+
 export const formState = {
     itemFormMode: 'add',
     itemEditIndex: null,

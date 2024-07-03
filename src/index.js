@@ -3,6 +3,7 @@ import {
     displayProjects,
     displayContent,
     applyProjectsBgColor,
+    displayDeleteProjects,
     formState,
 } from './dom.js';
 
@@ -61,6 +62,12 @@ function loadCurrentProject() {
         projectInputDiv.showModal();
     });
 
+    const closeProjectInput = document.querySelector('.close-project-input');
+    closeProjectInput.addEventListener('click', () => {
+        const projectInputDiv = document.querySelector('.project-input');
+        projectInputDiv.close();
+    });
+
     const projectForm = document.getElementById('projectForm');
     projectForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -73,11 +80,20 @@ function loadCurrentProject() {
         displayContent(Projects, currentProject);
     });
 
-    const closeProjectInput = document.querySelector('.close-project-input');
-    closeProjectInput.addEventListener('click', () => {
-        const projectInputDiv = document.querySelector('.project-input');
-        projectInputDiv.close();
+    const deleteProjectsButton = document.getElementById('deleteProjectsButton');
+    deleteProjectsButton.addEventListener('click', () => {
+        const deleteProjectsDialog = document.querySelector('.delete-projects');
+        deleteProjectsDialog.showModal();
+        displayDeleteProjects(Projects);
     });
+
+    const closeDeleteProjects = document.querySelector('.close-delete-projects');
+    closeDeleteProjects.addEventListener('click', () => {
+        const deleteProjectsDialog = document.querySelector('.delete-projects');
+        deleteProjectsDialog.close();
+    });
+
+
 
     const itemForm = document.getElementById('itemForm');
     itemForm.addEventListener('submit', (event) => {

@@ -13,7 +13,10 @@
         <div class="sidebar">
             <div class="sidebar-title">Projects</div>
             <div class="sidebar-grid"></div>
-            <button id="addProject">Add Project</button>
+            <div class="projects-buttons-container">
+                <button id="addProject">Add Project</button>
+                <button id="deleteProjectsButton"><svg xmlns="http://www.w3.org/2000/svg" fill="var(--main-black)" viewBox="0 0 24 24"><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg></button>
+            </div>
             <dialog class="project-input">
                 <div class="project-input-container">
                     <button class="close-project-input">x</button>
@@ -21,6 +24,15 @@
                         <label for="projectInput">Enter Project Name</label>
                         <input type="text" id="projectInput" name="projectInput" required>
                         <button id="submitProject" type="submit">Submit</button>
+                    </form>
+                </div>
+            </dialog>
+            <dialog class="delete-projects">
+                <div class="delete-projects-container">
+                    <button class="close-delete-projects">x</button>
+                    <form id="deleteProjectsForm">
+                        <div class="projects-list"></div>
+                        <button id="submitDeleteProjects" type="submit">Delete</button>
                     </form>
                 </div>
             </dialog>

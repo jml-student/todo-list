@@ -10,6 +10,7 @@
     font-size: 16px;
     --main-black: rgb(59, 59, 59);
     --main-blue: rgb(104, 202, 226);
+    --main-red: rgb(230, 115, 115);
 }
 
 body {
@@ -60,20 +61,68 @@ body {
     grid-template-columns: 1fr;
 }
 
-#addProject {
-    align-self: center;
-    padding: 8px 15px;
+.projects-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 30px;
+    padding-left: 60px;
+}
+
+#addProject {
+    padding: 8px 15px;
     color: var(--main-blue);
     font-size: 1rem;
     border: 1px solid var(--main-blue);
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
     font-family: "Ubuntu", sans-serif;
+    margin-right: 20px;
 }
 
 #addProject:hover {
     background-color: rgb(248, 248, 248);
+}
+
+#deleteProjectsButton {
+    border: none;
+    border-radius: 6px;
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(212, 212, 212);
+}
+
+#deleteProjectsButton>svg {
+    width: 25px;
+    height: 25px;
+}
+
+#deleteProjectsButton:hover {
+    background-color: rgb(201, 201, 201);
+    box-shadow: 0px 0px 4px 2px rgb(219, 219, 219);
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+input[name='deleteProjectItem'] {
+    margin-bottom: 15px;
+}
+
+#submitDeleteProjects {
+    padding: 10px 20px;
+    align-self: center;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    background-color: var(--main-red);
+    border-bottom: 3px solid rgb(199, 76, 76);
+    border-radius: 10px;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .project-item {
@@ -89,7 +138,7 @@ body {
     align-self: center;
 }
 
-.project-input, .item-input {
+.project-input, .item-input, .delete-projects {
     position: fixed;
     top: -50px;
     padding: 20px;
@@ -100,14 +149,14 @@ body {
     border-radius: 15px;
 }
 
-.project-input-container, .item-input-container {
+.project-input-container, .item-input-container, .delete-projects-container {
     display: flex;
     flex-direction: column;
     font-size: 1.3rem;
     color: var(--main-black);
 }
 
-.close-project-input, .close-item-input {
+.close-project-input, .close-item-input, .close-delete-projects {
     align-self: flex-end;
     border-radius: 6px;
     border: none;
@@ -118,11 +167,11 @@ body {
     color: var(--main-black);
 }
 
-.close-project-input:hover, .close-item-input:hover {
+.close-project-input:hover, .close-item-input:hover, .close-delete-projects:hover {
     background-color: rgb(206, 206, 206);
 }
 
-#projectForm, #itemForm {
+#projectForm, #itemForm, #deleteProjectsForm {
     display: flex;
     flex-direction: column;
 }
@@ -150,7 +199,7 @@ body {
     box-shadow: 0px 0px 4px 2px rgb(226, 226, 226);
 }
 
-#submitProject, #submitItem{
+#submitProject, #submitItem {
     padding: 10px 20px;
     align-self: center;
     font-size: 1rem;
@@ -162,7 +211,7 @@ body {
     font-family: "Ubuntu", sans-serif;
 }
 
-#submitProject:hover, #submitItem:hover, #addItem:hover {
+#submitProject:hover, #submitItem:hover, #addItem:hover, #submitDeleteProjects:hover {
     background-color: rgb(90, 185, 209);
 }
 
@@ -301,7 +350,7 @@ body {
 .item-delete-button>svg {
     width: 20px;
     height: 20px;
-    color: rgb(230, 115, 115);
+    color: var(--main-red);
 }
 
 .item-edit-button:hover, .item-delete-button:hover {
