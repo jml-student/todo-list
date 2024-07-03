@@ -125,6 +125,10 @@ input[name='deleteProjectItem'] {
     font-family: "Ubuntu", sans-serif;
 }
 
+#submitDeleteProjects:hover {
+    background-color: rgb(218, 90, 90);
+}
+
 .project-item {
     padding: 20px;
     text-align: center;
@@ -211,7 +215,7 @@ input[name='deleteProjectItem'] {
     font-family: "Ubuntu", sans-serif;
 }
 
-#submitProject:hover, #submitItem:hover, #addItem:hover, #submitDeleteProjects:hover {
+#submitProject:hover, #submitItem:hover, #addItem:hover {
     background-color: rgb(90, 185, 209);
 }
 

@@ -59,6 +59,7 @@ export const formState = {
 export function displayContent(Projects, project) {
     const content = document.querySelector('.content');
     content.innerHTML = '';
+
     Projects[project].forEach((item, index) => {
         let itemContainer = document.createElement('div');
         itemContainer.classList.add('item-container');
@@ -228,6 +229,7 @@ export function displayContent(Projects, project) {
 
         content.appendChild(itemContainer);
     });
+    
 
     const addItemDiv = document.createElement('div');
     addItemDiv.classList.add('button-container');

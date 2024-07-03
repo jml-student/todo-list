@@ -93,7 +93,30 @@ function loadCurrentProject() {
         deleteProjectsDialog.close();
     });
 
+    const deleteProjectsForm = document.getElementById('deleteProjectsForm');
+    deleteProjectsForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const deleteProjectsDialog = document.querySelector('.delete-projects');
+        const projects = document.querySelectorAll('input[name="deleteProjectItem"]:checked');
+        projects.forEach((project) => {
+            if (Projects[project.value]) {
+                delete Projects[project.value];
+            }
+        });
+        deleteProjectsDialog.close();
+        setCurrentProject(Object.keys(Projects)[0]);
+        updateStorage(Projects, currentProject);
+        displayProjects(Projects, setCurrentProject);
 
+        if (Object.keys(Projects).length === 0) {
+            const content = document.querySelector('.content');
+            content.innerHTML = '';
+            return;
+        } else {
+            applyProjectsBgColor(Projects, currentProject);
+            displayContent(Projects, currentProject);
+        }
+    });
 
     const itemForm = document.getElementById('itemForm');
     itemForm.addEventListener('submit', (event) => {
@@ -154,16 +177,19 @@ function loadCurrentProject() {
         itemInputDiv.close();
     });
 
-    if (!Projects['Todo']) {
+    if (!Projects['Todo'] && Object.keys(Projects).length === 0) {
         addProject('Todo');
         Projects.Todo.push(createTodoItem('Read Book', 'Read three chapters', '2024-07-02', 'Low'));
         Projects.Todo.push(createTodoItem('Plan Weekend Trip', 'Research and book activities', '2024-07-06', 'Mid'));
         Projects.Todo.push(createTodoItem('Pay Bills', 'Pay the utility and credit card bills', '2024-07-10', 'High'));
         displayContent(Projects, currentProject);
         updateStorage(Projects, currentProject);
+        return;
     }
 
+    
     displayProjects(Projects, setCurrentProject);
-    displayContent(Projects, currentProject);
     applyProjectsBgColor(Projects, currentProject);
+    displayContent(Projects, currentProject);
+    
 })();
