@@ -21,7 +21,7 @@ function loadStorage() {
     }
 }
 
-function loadCurrentProject() {
+function loadCurrentProject(Projects) {
     const currentProject = localStorage.getItem('currentProject');
     if (currentProject) {
         return currentProject;
@@ -32,7 +32,7 @@ function loadCurrentProject() {
 
 (function() {
     let Projects = loadStorage();
-    let currentProject = loadCurrentProject();
+    let currentProject = loadCurrentProject(Projects);
 
     function createTodoItem(title, description, dueDate, priority) {
         return {
