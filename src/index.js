@@ -137,10 +137,6 @@ function loadCurrentProject() {
         });
         itemInputDiv.close();
     });
-    
-    displayProjects(Projects, setCurrentProject);
-    displayContent(Projects, currentProject);
-    applyProjectsBgColor(Projects, currentProject);
 
     if (!Projects['Todo']) {
         addProject('Todo');
@@ -150,4 +146,8 @@ function loadCurrentProject() {
         displayContent(Projects, currentProject);
         updateStorage(Projects, currentProject);
     }
+
+    displayProjects(Projects, setCurrentProject);
+    displayContent(Projects, currentProject);
+    applyProjectsBgColor(Projects, currentProject);
 })();
