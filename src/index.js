@@ -26,7 +26,7 @@ function loadCurrentProject() {
     if (currentProject) {
         return currentProject;
     } else {
-        return '';
+        return Object.keys(Projects)[0];
     }
 }
 
@@ -187,9 +187,7 @@ function loadCurrentProject() {
         return;
     }
 
-    
     displayProjects(Projects, setCurrentProject);
     applyProjectsBgColor(Projects, currentProject);
     displayContent(Projects, currentProject);
-    
 })();
