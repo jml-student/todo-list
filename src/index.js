@@ -160,8 +160,7 @@ function loadCurrentProject(Projects) {
     closeItemInput.addEventListener('click', () => {
         const itemInputDiv = document.querySelector('.item-input');
         
-        const itemTitleInput = document.getElementById('itemTitle');
-        const itemTitle = itemTitleInput.value;        
+        const itemTitleInput = document.getElementById('itemTitle');       
         itemTitleInput.value = '';
 
         const itemDesInput = document.getElementById('itemDes');
@@ -175,6 +174,7 @@ function loadCurrentProject(Projects) {
             input.checked = false;
         });
         itemInputDiv.close();
+        formState.itemFormMode = 'add';
     });
 
     if (!Projects['Todo'] && Object.keys(Projects).length === 0) {
