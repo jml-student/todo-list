@@ -441,16 +441,7 @@ input[name='deleteProjectItem'] {
         margin-right: 0;
     }
 
-    .item-arrow-button {
-        top: 50%;
-    }
-
     .content {
         padding: 20px 10px;
     }
-}
-
-
-@media screen and (max-width: 400px) {
-
 }
