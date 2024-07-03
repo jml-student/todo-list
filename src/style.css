@@ -229,12 +229,6 @@ input[name='deleteProjectItem'] {
     gap: 20px;
 }
 
-@media (min-width: 1400px) {
-    .content {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
-    }
-}
-
 .item-container {
     display: flex;
     flex-direction: column;
@@ -262,7 +256,11 @@ input[name='deleteProjectItem'] {
 }
 
 .item-des {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .item-prio-container {
@@ -326,10 +324,16 @@ input[name='deleteProjectItem'] {
     margin-bottom: 10px;
 }
 
+.item-buttons-box {
+    display: flex;
+    flex-shrink: 0;
+}
+
 .item-edit-button {
     border: none;
     border-radius: 25px;
     padding: 5px;
+    margin-left: 10px;
     width: 35px;
     height: 35px;
     background-color: rgb(236, 236, 236);
@@ -403,3 +407,50 @@ input[name='deleteProjectItem'] {
     background-color: var(--main-blue);
 }
 
+@media (min-width: 1400px) {
+    .content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    }
+}
+
+@media screen and (max-width: 580px) {
+
+    .container {
+        overflow-x: scroll;
+    }
+
+    .sidebar {
+        width: clamp(150px, 40vw, 250px);
+        flex-shrink: 1;
+    }
+
+    .projects-buttons-container {
+        flex-direction: column;
+        padding-left: 0px;
+    }
+
+    #addProject {
+        font-size: 0.7rem;
+        margin-right: 10px;
+        margin-right: 0;
+        margin-bottom: 10px;
+        padding: 8px 10px;
+    }
+
+    #deleteProjectsButton {
+        margin-right: 0;
+    }
+
+    .item-arrow-button {
+        top: 50%;
+    }
+
+    .content {
+        padding: 20px 10px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+
+}
