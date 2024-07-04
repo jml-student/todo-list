@@ -24,7 +24,8 @@ body {
 
 .header {
     height: 80px;
-    background-color: rgb(221, 221, 221);
+    /* background-color: rgb(221, 221, 221); */
+    background: linear-gradient(to right, rgb(255, 255, 255) -10%, rgb(206, 206, 206));
     display: flex;
     align-items: center;
     border-bottom: 2px solid rgb(192, 192, 192);
@@ -106,11 +107,21 @@ body {
 .projects-list {
     display: flex;
     flex-direction: column;
+    border-top: 1px solid rgb(224, 224, 224);
+    padding-top: 15px;
+}
+
+.projects-list > label {
     margin-bottom: 15px;
+    border-bottom: 1px solid rgb(224, 224, 224);
 }
 
 input[name='deleteProjectItem'] {
     margin-bottom: 15px;
+}
+
+.delete-projects {
+    width: 200px;
 }
 
 #submitDeleteProjects {
@@ -136,10 +147,6 @@ input[name='deleteProjectItem'] {
     color: var(--main-black);
     border-radius: 5px;
 
-}
-
-.add-project {
-    align-self: center;
 }
 
 .project-input, .item-input, .delete-projects {
@@ -183,17 +190,17 @@ input[name='deleteProjectItem'] {
 #projectInput, #itemTitle, #itemDes, #itemDate {
     font-size: 1.3rem;
     height: 2.5rem;
-    border: 1px solid rgb(172, 172, 172);
-    border-radius: 10px;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 6px;
     padding-left: 10px;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 25px 0px;
     color: var(--main-black);
     outline: none;
 }
 
 .priority-options {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 25px;
 }
 
 #projectInput:hover, #projectInput:active,
@@ -227,6 +234,7 @@ input[name='deleteProjectItem'] {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-auto-rows: minmax(50px, 220px);
     gap: 20px;
+    background-color: rgb(245, 254, 255);
 }
 
 .item-container {
@@ -236,7 +244,6 @@ input[name='deleteProjectItem'] {
     padding-bottom: 5px;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 2px rgb(190, 190, 190);
-    background-color: rgb(245, 254, 255);
     height: 100px;
 }
 
@@ -373,6 +380,7 @@ input[name='deleteProjectItem'] {
     width: 35px;
     height: 35px;
     padding: 5px;
+    color: var(--main-black);
     background-color: rgb(236, 236, 236);
     box-shadow: 0px 0px 5px 1px rgb(190, 190, 190);
     align-self: center;

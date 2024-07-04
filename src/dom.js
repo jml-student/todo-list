@@ -88,10 +88,13 @@ export function displayContent(Projects, project) {
 
         if (item.priority === 'Low') {
             itemPrioValue.style.backgroundColor = 'rgb(165, 255, 165)';
+            itemContainer.style.background = 'linear-gradient(to right, rgb(255, 255, 255) 20%, rgb(232, 255, 233))';
         } else if (item.priority === 'Mid') {
             itemPrioValue.style.backgroundColor = 'rgb(253, 255, 165)';
+            itemContainer.style.background = 'linear-gradient(to right, rgb(255, 255, 255) 20%, rgb(255, 255, 232))';
         } else if (item.priority === 'High') {
             itemPrioValue.style.backgroundColor = 'rgb(255, 165, 165)';
+            itemContainer.style.background = 'linear-gradient(to right, rgb(255, 255, 255) 20%, rgb(255, 235, 232))';
         }
 
         let itemButtonsDiv = document.createElement('div');
@@ -108,10 +111,26 @@ export function displayContent(Projects, project) {
         itemStatusText.textContent = 'Completed: ';
         let itemStatusBox = document.createElement('div');
         itemStatusBox.classList.add('item-status-box');
+
         let itemStatusFirst = document.createElement('div');
         itemStatusFirst.classList.add('item-status-first');
         let itemStatusSecond = document.createElement('div');
         itemStatusSecond.classList.add('item-status-second');
+
+        if (item.completed === true) {
+            itemStatusBox.style.backgroundColor = 'var(--main-blue)';
+            itemStatusFirst.style.backgroundColor = 'var(--main-blue)';
+            itemStatusFirst.style.boxShadow = 'none';
+            itemStatusSecond.style.backgroundColor = 'rgb(245, 245, 245)';
+            itemStatusSecond.style.boxShadow = '0px 0px 5px 1px rgb(190, 190, 190)';
+            
+        } else if (item.completed === false) {
+            itemStatusBox.style.backgroundColor = 'rgb(196, 196, 196)';
+            itemStatusFirst.style.backgroundColor = 'rgb(245, 245, 245)';
+            itemStatusFirst.style.boxShadow = '0px 0px 5px 1px rgb(190, 190, 190)';
+            itemStatusSecond.style.backgroundColor ='rgb(196, 196, 196)';
+            itemStatusSecond.style.boxShadow = 'none';
+        }
 
         let itemButtonsBox = document.createElement('div');
         itemButtonsBox.classList.add('item-buttons-box');
@@ -139,6 +158,8 @@ export function displayContent(Projects, project) {
                 itemStatusSecond.style.boxShadow = '0px 0px 5px 1px rgb(190, 190, 190)';
                 
                 item.completed = true;
+                updateStorage(Projects, project);
+
             } else if (item.completed === true) {
                 itemStatusBox.style.backgroundColor = 'rgb(196, 196, 196)';
                 itemStatusFirst.style.backgroundColor = 'rgb(245, 245, 245)';
@@ -147,6 +168,7 @@ export function displayContent(Projects, project) {
                 itemStatusSecond.style.boxShadow = 'none';
 
                 item.completed = false;
+                updateStorage(Projects, project);
             }
         });
 
