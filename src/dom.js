@@ -146,8 +146,27 @@ export function displayContent(Projects, project) {
         let itemArrowButton = document.createElement('button');
         itemArrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>';
         itemArrowButton.classList.add('item-arrow-button');
-        
-        let arrowButtonStatus = 'close';
+
+        if (item.container === 'open') {
+            itemPrio.style.display = 'block';
+            itemStatus.style.display = 'block';
+            itemButtonsDiv.style.display = 'block';
+
+            itemContainer.style.height = '180px';
+
+            itemArrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>';
+            itemArrowButton.style.top = '0%';
+
+        } else if (item.container === 'close') {
+            itemPrio.style.display = 'none';
+            itemStatus.style.display = 'none';
+            itemButtonsDiv.style.display = 'none';
+
+            itemContainer.style.height = '100px';
+
+            itemArrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>';
+            itemArrowButton.style.top = '10%';
+        }
 
         itemStatusBox.addEventListener('click', () => {
             if (item.completed === false) {
@@ -198,7 +217,7 @@ export function displayContent(Projects, project) {
         });
 
         itemArrowButton.addEventListener('click', () => {
-            if (arrowButtonStatus === 'close') {
+            if (item.container === 'close') {
                 itemPrio.style.display = 'block';
                 itemStatus.style.display = 'block';
                 itemButtonsDiv.style.display = 'block';
@@ -208,9 +227,10 @@ export function displayContent(Projects, project) {
                 itemArrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>';
                 itemArrowButton.style.top = '0%';
 
-                arrowButtonStatus = 'open';
+                item.container = 'open';
+                updateStorage(Projects, project);
 
-            } else if (arrowButtonStatus === 'open') {
+            } else if (item.container === 'open') {
                 itemPrio.style.display = 'none';
                 itemStatus.style.display = 'none';
                 itemButtonsDiv.style.display = 'none';
@@ -220,7 +240,8 @@ export function displayContent(Projects, project) {
                 itemArrowButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>';
                 itemArrowButton.style.top = '10%';
 
-                arrowButtonStatus = 'close';
+                item.container = 'close';
+                updateStorage(Projects, project);
             }
         });
 

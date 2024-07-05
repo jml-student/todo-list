@@ -40,7 +40,8 @@ function loadCurrentProject(Projects) {
             description: description,
             dueDate: dueDate,
             priority: priority,
-            completed: false
+            completed: false,
+            container: 'close',
         }
     };
 

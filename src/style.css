@@ -24,7 +24,6 @@ body {
 
 .header {
     height: 80px;
-    /* background-color: rgb(221, 221, 221); */
     background: linear-gradient(to right, rgb(255, 255, 255) -10%, rgb(206, 206, 206));
     display: flex;
     align-items: center;
